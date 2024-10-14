@@ -1,0 +1,68 @@
+<div [class.valid]="userForm.valid" class="card">
+  <div [formGroup]="userForm" class="card-body position-relative">
+
+    <i (click)="remove.emit()" class="bi bi-x-square text-danger fs-4 remove-button"></i>
+    <div class="mb-4">
+      <label appTooltip="Start typing in the Country field, and you’ll see suggestions. Select a valid country to proceed."
+             class="form-label"
+             for="country">
+        Country
+      </label>
+      <input [appInputErrorMessage]="'Please provide a valid country'"
+             [appInputError]="countryControl"
+             class="form-control"
+             formControlName="country"
+             id="country"
+             list="datalistOptions"
+             placeholder="Type or select">
+      <datalist id="datalistOptions">
+        @for (country of formService.countries; track country) {
+          <option [value]="country">
+            }
+      </datalist>
+    </div>
+
+    <div class="mb-4">
+      <label appTooltip="Enter a Username, and we’ll check if it’s available. If it's taken, try a different one."
+             class="form-label"
+             for="username">
+        User name
+      </label>
+      <input
+        [appInputErrorMessage]="'Please provide a valid username'"
+        [appInputError]="usernameControl"
+        class="form-control"
+        formControlName="username"
+        id="username"
+        type="text"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label appTooltip="Choose a date that’s not in the future."
+             class="form-label"
+             for="birthday">
+        Birthday
+      </label>
+      <div [appInputErrorMessage]="'Please provide a valid birthday'"
+           [appInputError]="birthdayControl"
+           class="input-group">
+        <input
+          #datePicker="ngbDatepicker"
+          [maxDate]="formService.today"
+          class="form-control"
+          formControlName="birthday"
+          id="birthday"
+          name="dp"
+          ngbDatepicker
+          placeholder="yyyy-mm-dd"
+        />
+        <button (click)="datePicker.toggle()" class="btn btn-outline-secondary" type="button">
+          <i class="bi bi-calendar-heart"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

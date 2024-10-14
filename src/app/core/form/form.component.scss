@@ -1,0 +1,15 @@
+.users-form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.add-button {
+  width: 4.2rem;
+
+  .bi {
+    font-size: 2rem;
+  }
+}

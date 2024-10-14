@@ -1,0 +1,14 @@
+.card {
+  width: 18rem;
+
+  &.valid {
+    border: 1px solid #20ad6b;
+  }
+
+  .remove-button {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+}

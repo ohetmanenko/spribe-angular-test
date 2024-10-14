@@ -1,0 +1,60 @@
+<form (submit)="handleSubmit()" *ngIf="form" [formGroup]="form">
+  <div class="row g-3 my-4 align-items-center">
+    <div class="col-auto">
+      @if (countdown$ | async) {
+        <button appTooltip="As timer appear with an option to cancel."
+                class="btn btn-danger"
+                (click)="handleSubmit()"
+                type="reset">
+          Cancel
+        </button>
+      } @else {
+        <button [disabled]="form.invalid"
+                appTooltip="Click 'Submit All Forms' to finalize. A timer will appear with an option to cancel."
+                class="btn btn-primary"
+                type="submit">
+          Submit All Forms
+        </button>
+      }
+    </div>
+
+    <div class="col-auto">
+      @if (invalidCount) {
+        <div class="text-danger">
+          Invalid forms: {{ invalidCount }}
+        </div>
+      }
+    </div>
+
+    <div class="col-auto">
+      @if (countdown$ | async; as countdown) {
+        <span class="text-muted">
+          Time remaining: {{ countdown }}s
+        </span>
+      }
+    </div>
+
+    <div class="text-muted">
+      Each card represents a form. Fill in the details for Country, Username, and Birthday.
+    </div>
+  </div>
+
+  <div class="users-form" formArrayName="users">
+    @for (userInfo of users.controls; track userInfo; let i = $index) {
+      <ng-container [formGroupName]="i">
+        <app-user-card
+          (remove)="removeItem(i)"
+          [userForm]="userInfo"></app-user-card>
+      </ng-container>
+    }
+    <button (click)="addUser()"
+            [disabled]="form.disabled || users.controls.length >= maxItems"
+            appTooltip="You can add up to 10 forms or delete any you don’t need."
+            class="btn btn-outline-secondary add-button"
+            type="button">
+      <i class="bi bi-file-plus"></i>
+    </button>
+  </div>
+</form>
+
+
