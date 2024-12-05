@@ -1,7 +1,5 @@
-import {Component} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {CheckUserResponseData} from "./shared/interface/responses";
+import { Component } from '@angular/core'
+import { Contacts } from '@interface/contacts'
 
 @Component({
   selector: 'app-root',
@@ -9,13 +7,21 @@ import {CheckUserResponseData} from "./shared/interface/responses";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
-  constructor(private http: HttpClient) {
-  }
-
-
-  // just an example, you are free to move it anywhere
-  checkUser(username: string): Observable<CheckUserResponseData> {
-    return this.http.post<CheckUserResponseData>('/api/checkUsername1', {username});
-  }
+  contacts: Contacts[] = [
+    {
+      target: '_blank',
+      href: 'https://www.linkedin.com/in/ohetmanenko/',
+      icon: 'bi bi-linkedin'
+    },
+    {
+      target: '_blank',
+      href:'mailto:oleksii.hetmanenko@gmail.com',
+      icon: 'bi bi-envelope-at'
+    },
+    {
+      target: '_blank',
+      href: 'tel:+380964884400',
+      icon: 'bi bi-phone'
+    }
+  ]
 }

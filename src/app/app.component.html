@@ -1,0 +1,32 @@
+<div class="container">
+  <header class="d-flex justify-content-between align-items-center py-3">
+    <a class="navbar-brand" href="https://spribe.co/welcome" target="_blank"></a>
+    <span class="fs-5">
+      Assignment for the Angular Engineer
+    </span>
+  </header>
+</div>
+
+<main class="container">
+  <div class="row">
+    <div class="col-12">
+      <app-form></app-form>
+    </div>
+  </div>
+</main>
+
+<footer class="d-flex flex-wrap justify-content-between align-items-center p-3 border-top">
+  <div class="col-md-4 d-flex align-items-center">
+    <span class="mb-3 mb-md-0 text-muted">© 2024 <a class="text-muted" href="https://www.linkedin.com/in/ohetmanenko/" target="_blank">Oleksii Hetmanenko</a></span>
+  </div>
+
+  <ul class="nav col-md-4 justify-content-end list-unstyled d-flex fs-3">
+    @for (contact of contacts; track index; let index = $index) {
+      <li class="ms-3">
+        <a class="text-muted" [target]="contact.target" [href]="contact.href">
+          <i [ngClass]="contact.icon"></i>
+        </a>
+      </li>
+    }
+  </ul>
+</footer>
